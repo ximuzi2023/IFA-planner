@@ -492,7 +492,7 @@ void check_exit(int &exit_pre, bool &ifsuccess, int &exit_flag, Eigen::Vector3d 
 }
 
 // 锚点选取函数
-double archreplan(const std::vector<Eigen::Vector3d> &map, const double t_cur, const double heading, double dt = 0.01)
+double AnchorReplan(const std::vector<Eigen::Vector3d> &map, const double t_cur, const double heading, double dt = 0.01)
 {
   double result = heading;
   std::vector<Eigen::Vector3d> local_clouds; // 可视特征
@@ -809,7 +809,7 @@ void cmdCallback(const ros::TimerEvent &e)
     double arch = heading;
     if (anchor_enable_)
     {
-      arch = archreplan(last_map, t_cur, heading);
+      arch = AnchorReplan(last_map, t_cur, heading);
     }
     std_msgs::Float64 state;
     if (have_anchor || have_new_anchor)
